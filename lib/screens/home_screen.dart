@@ -1,151 +1,162 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:sisa/api/get_restaurants.dart';
-import 'package:sisa/models/restaurants_model.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class Homescreen extends StatefulWidget {
+  const Homescreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Homescreen> createState() => _HomescreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  var restaurantServices = GetRestaurant();
-  Position? _currentPosition;
-  bool _isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _getCurrentLocation();
-  }
-
-  void _getCurrentLocation() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return;
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return;
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      return;
-    }
-
-    setState(() {
-      _currentPosition = null;
-    });
-
-    _currentPosition = await Geolocator.getCurrentPosition();
-    if (mounted) {
-      setState(() {
-        _isLoading = false;
-      });
-    }
-  }
-
-  double _calculateDistance(
-      double lat1, double lon1, double lat2, double lon2) {
-    return Geolocator.distanceBetween(lat1, lon1, lat2, lon2);
-  }
-
+class _HomescreenState extends State<Homescreen> {
+  var fitur = [
+    'Terlaris',
+    'Terdekat',
+    'Termurah',
+    'Jajanan',
+    'Diskon',
+  ];
+  var fiturIcons = [
+    Icons.favorite_border_outlined,
+    Icons.location_on_outlined,
+    Icons.attach_money_outlined,
+    Icons.fastfood_outlined,
+    Icons.local_offer_outlined,
+  ];
+  var fiturRoutes = [
+    '/list',
+    '/',
+    '/',
+    '/',
+    '/',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Restaurants")),
+      backgroundColor: const Color(0xFFF6F8FB),
       body: SafeArea(
-        child: _isLoading
-            ? Center(child: CircularProgressIndicator())
-            : FutureBuilder(
-                future: restaurantServices.getRestaurants(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<Map<String, Restaurant>> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    final restaurants = snapshot.data?.values.toList() ?? [];
-                    return ListView.builder(
-                      itemCount: restaurants.length,
-                      itemBuilder: (context, index) {
-                        final restaurant = restaurants[index];
-                        String coordinates = restaurant.coordinates;
-                        List<String> coordinateList = coordinates.split(',');
-                        double latitude = double.parse(coordinateList[0]);
-                        double longitude = double.parse(coordinateList[1]);
-                        double latitudeg = double.parse('-5.36435');
-                        double longitudeg = double.parse('105.24316');
-                        double distance = _currentPosition != null
-                            ? _calculateDistance(
-                                latitude, longitude,
-                                // latitudeg, longitudeg
-                                _currentPosition!.latitude,
-                                _currentPosition!.longitude,
-                              )
-                            : 0.0;
-
-                        String distanceText = distance >= 1000
-                            ? '${(distance / 1000).toStringAsFixed(2)} KM'
-                            : '${distance.toInt()} M';
-                        return Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Expanded(
-                                child: Container(
-                                  height: 100,
-                                  width: 100,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Image.network(
-                                      restaurant.image,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Welcome Back, ',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Color(0xffA4A8AE),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          'Shanon',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 200,
+                    ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      child: Icon(
+                        Icons.shopping_cart_outlined,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: double.infinity,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(16.0),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/images/promo.png'),
+                    ),
+                  ),
+                ),
+              ),
+              GridView.builder(
+                itemCount: fitur.length,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 16,
+                ),
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, fiturRoutes[index]);
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(top: 8),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 65,
+                            height: 65,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Flexible(
+                              child: Icon(
+                                fiturIcons[index],
+                                color: Colors.black,
+                                size: 32,
                               ),
                             ),
-                            Expanded(
-                              child: Container(
-                                height: 100,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      restaurant.placeName,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      '${distanceText}\nHarga: ${restaurant.lowestPrice} - ${restaurant.highestPrice}',
-                                      style: TextStyle(
-                                          fontSize: 12, color: Colors.black),
-                                    ),
-                                  ],
-                                ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Flexible(
+                            child: Text(
+                              fitur[index],
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                          ],
-                        );
-                      },
-                    );
-                  } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
                 },
               ),
+              SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
