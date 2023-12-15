@@ -13,7 +13,6 @@ class _HomescreenState extends State<Homescreen> {
     'Terdekat',
     'Termurah',
     'Jajanan',
-    'Diskon',
   ];
   var fiturIcons = [
     Icons.favorite_border_outlined,
@@ -24,9 +23,8 @@ class _HomescreenState extends State<Homescreen> {
   ];
   var fiturRoutes = [
     '/list',
-    '/',
-    '/',
-    '/',
+    '/nearest',
+    '/cheapest',
     '/',
   ];
   @override
@@ -67,8 +65,8 @@ class _HomescreenState extends State<Homescreen> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: 200,
+                    Expanded(
+                      child: SizedBox(),
                     ),
                     Container(
                       width: 40,
@@ -124,24 +122,29 @@ class _HomescreenState extends State<Homescreen> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            child: Flexible(
-                              child: Icon(
-                                fiturIcons[index],
-                                color: Colors.black,
-                                size: 32,
-                              ),
+                            child: Icon(
+                              fiturIcons[index],
+                              color: Colors.black,
+                              size: 32,
                             ),
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 4,
                           ),
                           Flexible(
-                            child: Text(
-                              fitur[index],
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis,
+                            child: Center(
+                              child: Wrap(
+                                alignment: WrapAlignment.center,
+                                children: [
+                                  Text(
+                                    fitur[index],
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
                               ),
                             ),
                           ),

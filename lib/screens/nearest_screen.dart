@@ -3,14 +3,15 @@ import 'package:geolocator/geolocator.dart';
 import 'package:sisa/api/get_restaurants.dart';
 import 'package:sisa/models/restaurants_model.dart';
 
-class RestaurantScreen extends StatefulWidget {
-  const RestaurantScreen({Key? key}) : super(key: key);
+class NearestScreen extends StatefulWidget {
+  const NearestScreen({Key? key}) : super(key: key);
 
   @override
-  State<RestaurantScreen> createState() => _RestaurantScreenState();
+  State<NearestScreen> createState() => _NearestScreenState();
 }
 
-class _RestaurantScreenState extends State<RestaurantScreen> {
+class _NearestScreenState extends State<NearestScreen> {
+  var _value = 1;
   var restaurantServices = GetRestaurant();
   Position? _currentPosition;
   bool _isLoading = true;
@@ -66,8 +67,10 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
       body: SafeArea(
         child: _isLoading
             ? Center(child: CircularProgressIndicator())
-            : FutureBuilder(
-                future: restaurantServices.getRestaurantsSortedBy(),
+            : FutureBuilder<List<Restaurant>>(
+                future: restaurantServices.getRestaurantsSortedBy(
+                    sortBy: SortCriteria.nearest,
+                    currentPosition: _currentPosition),
                 builder: (BuildContext context,
                     AsyncSnapshot<List<Restaurant>> snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
@@ -80,12 +83,10 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                         List<String> coordinateList = coordinates.split(',');
                         double latitude = double.parse(coordinateList[0]);
                         double longitude = double.parse(coordinateList[1]);
-                        double latitudeg = double.parse('-5.36435');
-                        double longitudeg = double.parse('105.24316');
                         double distance = _currentPosition != null
                             ? _calculateDistance(
-                                latitude, longitude,
-                                // latitudeg, longitudeg
+                                latitude,
+                                longitude,
                                 _currentPosition!.latitude,
                                 _currentPosition!.longitude,
                               )
