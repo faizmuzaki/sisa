@@ -3,14 +3,15 @@ import 'package:geolocator/geolocator.dart';
 import 'package:sisa/api/get_restaurants.dart';
 import 'package:sisa/models/restaurants_model.dart';
 
-class RestaurantScreen extends StatefulWidget {
-  const RestaurantScreen({Key? key}) : super(key: key);
+class CheapestRestaurant extends StatefulWidget {
+  const CheapestRestaurant({Key? key}) : super(key: key);
 
   @override
-  State<RestaurantScreen> createState() => _RestaurantScreenState();
+  State<CheapestRestaurant> createState() => _CheapestRestaurantState();
 }
 
-class _RestaurantScreenState extends State<RestaurantScreen> {
+class _CheapestRestaurantState extends State<CheapestRestaurant> {
+  var _value = 1;
   var restaurantServices = GetRestaurant();
   Position? _currentPosition;
   bool _isLoading = true;
@@ -66,8 +67,9 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
       body: SafeArea(
         child: _isLoading
             ? Center(child: CircularProgressIndicator())
-            : FutureBuilder(
-                future: restaurantServices.getRestaurantsSortedBy(),
+            : FutureBuilder<List<Restaurant>>(
+                future: restaurantServices.getRestaurantsSortedBy(
+                    sortBy: SortCriteria.lowestPrice),
                 builder: (BuildContext context,
                     AsyncSnapshot<List<Restaurant>> snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
