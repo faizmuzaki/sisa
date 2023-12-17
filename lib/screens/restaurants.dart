@@ -96,21 +96,92 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                             : '${distance.toInt()} M';
                         return Row(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Expanded(
-                                child: Container(
-                                  height: 100,
-                                  width: 100,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Image.network(
-                                      restaurant.image,
-                                      fit: BoxFit.cover,
+                            Stack(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    height: 100,
+                                    width: 100,
+                                    child: Stack(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: Image.network(
+                                            restaurant.image,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 0,
+                                          left: 0,
+                                          right: 0,
+                                          child: Container(
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft: Radius.circular(8),
+                                                bottomRight: Radius.circular(8),
+                                              ),
+                                              color:
+                                                  Colors.red.withOpacity(1.0),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                '${restaurant.discount.toString()}% OFF',
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: 55,
+                                          left: 23,
+                                          child: Container(
+                                            width: 55,
+                                            height: 20,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                            ),
+                                            child: Center(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Color.fromARGB(
+                                                        255, 255, 213, 0),
+                                                    size: 14,
+                                                  ),
+                                                  SizedBox(width: 4),
+                                                  Text(
+                                                    '${restaurant.rate.toString()}',
+                                                    style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
                             Expanded(
                               child: Container(
@@ -124,6 +195,12 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      restaurant.type,
+                                      style: TextStyle(
+                                        fontSize: 12,
                                       ),
                                     ),
                                     Text(
