@@ -125,8 +125,7 @@ class _NearestScreenState extends State<NearestScreen> {
                                                 bottomLeft: Radius.circular(8),
                                                 bottomRight: Radius.circular(8),
                                               ),
-                                              color:
-                                                  Colors.red.withOpacity(1.0),
+                                              color: Color(0xFFFB9701),
                                             ),
                                             child: Center(
                                               child: Text(
@@ -205,7 +204,7 @@ class _NearestScreenState extends State<NearestScreen> {
                                       ),
                                     ),
                                     Text(
-                                      '${distanceText}\nHarga: ${restaurant.lowestPrice} - ${restaurant.highestPrice}',
+                                      'Bandar Lampung / ${distanceText}\nHarga: ${restaurant.lowestPrice} - ${restaurant.highestPrice}',
                                       style: TextStyle(
                                           fontSize: 12, color: Colors.black),
                                     ),
