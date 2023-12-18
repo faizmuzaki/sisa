@@ -204,9 +204,16 @@ class _NearestScreenState extends State<NearestScreen> {
                                       ),
                                     ),
                                     Text(
-                                      'Bandar Lampung / ${distanceText}\nHarga: ${restaurant.lowestPrice} - ${restaurant.highestPrice}',
+                                      'Bandar Lampung / ${distanceText}',
                                       style: TextStyle(
                                           fontSize: 12, color: Colors.black),
+                                    ),
+                                    Text(
+                                      'Rp ${restaurant.lowestPrice} - ${restaurant.highestPrice}',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
