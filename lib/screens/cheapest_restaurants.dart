@@ -207,7 +207,7 @@ class _CheapestRestaurantState extends State<CheapestRestaurant> {
                                     Text(
                                       'Bandar Lampung / ${distanceText}',
                                       style: TextStyle(
-                                          fontSize: 13, color: Colors.black),
+                                          fontSize: 12, color: Colors.black),
                                     ),
                                     Text(
                                       'Rp ${restaurant.lowestPrice} - ${restaurant.highestPrice}',
