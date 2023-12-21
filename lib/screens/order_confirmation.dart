@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sisa/widgets/CartBottomNavBar.dart';
 
 class OrderConfirm extends StatefulWidget {
   const OrderConfirm({super.key});
@@ -12,6 +13,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("Order")),
       body: ListView(
         children: [
           SingleChildScrollView(
@@ -19,12 +21,6 @@ class _OrderConfirmState extends State<OrderConfirm> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  AppBar(),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20, left: 10, bottom: 10),
-                    child: Text("Order List", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
-                    ),
-
 
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 9),
@@ -220,6 +216,9 @@ class _OrderConfirmState extends State<OrderConfirm> {
           )
         ],
       ),
+
+      drawer: Drawer(),
+      bottomNavigationBar: CartBottomNavBar(),
     );
   }
 }
