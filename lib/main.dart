@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sisa/screens/cheapest_restaurants.dart';
 import 'package:sisa/screens/home_screen.dart';
 import 'package:sisa/screens/nearest_screen.dart';
+import 'package:sisa/screens/order_confirmation.dart';
 import 'package:sisa/screens/restaurants.dart';
 
 void main() {
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const Homescreen(),
+        '/': (context) => const OrderConfirm(),
         '/list': (context) => const RestaurantScreen(),
         '/cheapest': (context) => const CheapestRestaurant(),
         '/nearest': (context) => const NearestScreen(),
