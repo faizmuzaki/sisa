@@ -22,16 +22,16 @@ class _CartBottomNavBarState extends State<CartBottomNavBar> {
               children: [
                 Text("Total : ", style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),),
                 SizedBox(width: 15,),
-                Text("\$70", style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold, color: Colors.red),),
+                Text("Rp. 73.000", style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold, color: Colors.orange),),
               ],
             ),
             ElevatedButton(onPressed: () {},
-            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red), padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 15, horizontal: 20)), shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.orange), padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 15, horizontal: 20)), shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20)
               )
             )),
-            child: Text("Order Now", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),)
+            child: Text("Bayar", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),)
             )
           ],
         ),
