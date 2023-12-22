@@ -15,11 +15,11 @@ class _SignupscreenState extends State<Signupscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF6F8FB),
+      backgroundColor: const Color(0xFFF6F8FB),
       body: Center(
         child: Container(
           width: MediaQuery.of(context).size.width * 0.8,
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(16.0),
@@ -43,8 +43,8 @@ class _SignupscreenState extends State<Signupscreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              Row(
+              const SizedBox(height: 20),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
@@ -58,8 +58,8 @@ class _SignupscreenState extends State<Signupscreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
-              Row(
+              const SizedBox(height: 20),
+              const Row(
                 children: [
                   Text('Nama Lengkap'),
                   Text(
@@ -68,17 +68,17 @@ class _SignupscreenState extends State<Signupscreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               TextField(
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
               ),
-              SizedBox(height: 8),
-              Row(
+              const SizedBox(height: 8),
+              const Row(
                 children: [
                   Text('Email'),
                   Text(
@@ -87,19 +87,19 @@ class _SignupscreenState extends State<Signupscreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               TextField(
                 controller: emailController,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
                   errorText: isEmailValid ? null : "Email tidak valid",
                 ),
               ),
-              SizedBox(height: 8),
-              Row(
+              const SizedBox(height: 8),
+              const Row(
                 children: [
                   Text('Kata Sandi'),
                   Text(
@@ -108,18 +108,18 @@ class _SignupscreenState extends State<Signupscreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               TextField(
                 obscureText: true,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
               ),
-              SizedBox(height: 16),
-              Row(
+              const SizedBox(height: 16),
+              const Row(
                 children: [
                   Text('Konfirmasi Kata Sandi'),
                   Text(
@@ -128,20 +128,20 @@ class _SignupscreenState extends State<Signupscreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               TextField(
                 obscureText: true,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
@@ -154,7 +154,7 @@ class _SignupscreenState extends State<Signupscreen> {
                       isEmailValid = emailController.text.isNotEmpty;
                     });
                   },
-                  child: Text(
+                  child: const Text(
                     "Daftar",
                     style: TextStyle(
                       fontSize: 16,
@@ -164,18 +164,18 @@ class _SignupscreenState extends State<Signupscreen> {
               ),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    primary: Colors.black, // Set the text color to black
+                    foregroundColor: Colors.black, // Set the text color to black
                   ),
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Loginscreen()),
+                      MaterialPageRoute(builder: (context) => const Loginscreen()),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     "Sudah Punya Akun? Masuk",
                     style: TextStyle(
                       fontSize: 16,

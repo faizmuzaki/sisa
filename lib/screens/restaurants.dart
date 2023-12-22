@@ -4,7 +4,7 @@ import 'package:sisa/api/get_restaurants.dart';
 import 'package:sisa/models/restaurants_model.dart';
 
 class RestaurantScreen extends StatefulWidget {
-  const RestaurantScreen({Key? key}) : super(key: key);
+  const RestaurantScreen({super.key});
 
   @override
   State<RestaurantScreen> createState() => _RestaurantScreenState();
@@ -62,10 +62,10 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Restaurants")),
+      appBar: AppBar(title: const Text("Restaurants")),
       body: SafeArea(
         child: _isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : FutureBuilder(
                 future: restaurantServices.getRestaurantsSortedBy(),
                 builder: (BuildContext context,
@@ -100,7 +100,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Container(
+                                  child: SizedBox(
                                     height: 100,
                                     width: 100,
                                     child: Stack(
@@ -119,7 +119,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                           right: 0,
                                           child: Container(
                                             height: 35,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               borderRadius: BorderRadius.only(
                                                 bottomLeft: Radius.circular(8),
                                                 bottomRight: Radius.circular(8),
@@ -129,7 +129,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                             child: Center(
                                               child: Text(
                                                 '${restaurant.discount.toString()}% OFF',
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontSize: 12,
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
@@ -147,7 +147,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(8),
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                             ),
                                             child: Center(
@@ -155,16 +155,16 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                                  Icon(
+                                                  const Icon(
                                                     Icons.star,
                                                     color: Color.fromARGB(
                                                         255, 255, 213, 0),
                                                     size: 14,
                                                   ),
-                                                  SizedBox(width: 4),
+                                                  const SizedBox(width: 4),
                                                   Text(
-                                                    '${restaurant.rate.toString()}',
-                                                    style: TextStyle(
+                                                    restaurant.rate.toString(),
+                                                    style: const TextStyle(
                                                       fontSize: 10,
                                                       color: Colors.black,
                                                       fontWeight:
@@ -183,7 +183,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                               ],
                             ),
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: 100,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -191,25 +191,25 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                   children: [
                                     Text(
                                       restaurant.placeName,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
                                       restaurant.type,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 12,
                                       ),
                                     ),
                                     Text(
-                                      'Bandar Lampung / ${distanceText}',
-                                      style: TextStyle(
+                                      'Bandar Lampung / $distanceText',
+                                      style: const TextStyle(
                                           fontSize: 12, color: Colors.black),
                                     ),
                                     Text(
                                       'Rp ${restaurant.lowestPrice} - ${restaurant.highestPrice}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 18,
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold),
@@ -223,7 +223,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                       },
                     );
                   } else {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }

@@ -8,12 +8,7 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
-  var fitur = [
-    'Terlaris',
-    'Terdekat',
-    'Termurah',
-    'Jajanan',
-  ];
+  var fitur = ['Terlaris', 'Terdekat', 'Termurah', 'Jajanan', 'Profile'];
   var fiturIcons = [
     Icons.favorite_border_outlined,
     Icons.location_on_outlined,
@@ -26,6 +21,7 @@ class _HomescreenState extends State<Homescreen> {
     '/nearest',
     '/cheapest',
     '/',
+    '/profile',
   ];
   @override
   Widget build(BuildContext context) {
@@ -35,10 +31,10 @@ class _HomescreenState extends State<Homescreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Row(
                   children: [
@@ -65,10 +61,8 @@ class _HomescreenState extends State<Homescreen> {
                         ),
                       ],
                     ),
-                    Expanded(
-                      child: SizedBox(),
-                    ),
-                    Container(
+                    Expanded(child: SizedBox()),
+                    SizedBox(
                       width: 40,
                       height: 40,
                       child: Icon(
@@ -79,7 +73,7 @@ class _HomescreenState extends State<Homescreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Padding(
@@ -90,7 +84,7 @@ class _HomescreenState extends State<Homescreen> {
                   decoration: BoxDecoration(
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(16.0),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage('assets/images/promo.png'),
                     ),
@@ -99,10 +93,10 @@ class _HomescreenState extends State<Homescreen> {
               ),
               GridView.builder(
                 itemCount: fitur.length,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 5,
                   mainAxisSpacing: 16,
                 ),
                 itemBuilder: (context, index) {
@@ -111,7 +105,7 @@ class _HomescreenState extends State<Homescreen> {
                       Navigator.pushNamed(context, fiturRoutes[index]);
                     },
                     child: Container(
-                      margin: EdgeInsets.only(top: 8),
+                      margin: const EdgeInsets.only(top: 8),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -128,7 +122,7 @@ class _HomescreenState extends State<Homescreen> {
                               size: 32,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Flexible(
@@ -138,7 +132,7 @@ class _HomescreenState extends State<Homescreen> {
                                 children: [
                                   Text(
                                     fitur[index],
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -154,7 +148,7 @@ class _HomescreenState extends State<Homescreen> {
                   );
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
             ],

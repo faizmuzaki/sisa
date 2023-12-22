@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sisa/screens/cheapest_restaurants.dart';
 import 'package:sisa/screens/home_screen.dart';
 import 'package:sisa/screens/nearest_screen.dart';
+import 'package:sisa/screens/profile.dart';
 import 'package:sisa/screens/restaurants.dart';
 
 void main() {
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         '/list': (context) => const RestaurantScreen(),
         '/cheapest': (context) => const CheapestRestaurant(),
         '/nearest': (context) => const NearestScreen(),
+        '/profile': (BuildContext) => const Profile()
       },
     );
   }
