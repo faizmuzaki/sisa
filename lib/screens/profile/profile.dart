@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:sisa/constant/string.dart';
 import 'package:sisa/constant/image_string.dart';
+import 'package:sisa/screens/profile/updateProfileScreen.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -36,13 +37,31 @@ class _ProfileState extends State<Profile> {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
-              SizedBox(
-                width: 120,
-                height: 120,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image(image: AssetImage(tProfileImage)),
-                ),
+              Stack(
+                children: [
+                  SizedBox(
+                    width: 120,
+                    height: 120,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Image(image: AssetImage(tProfileImage)),
+                    ),
+                  ),
+                  Positioned(
+                    child: Container(
+                      width: 35,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.amber[100]),
+                      child: const Icon(
+                        LineAwesomeIcons.alternate_pencil,
+                        color: Colors.black,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
               Text("Shanon", style: Theme.of(context).textTheme.headlineLarge),
@@ -54,7 +73,13 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const UpdateProfile()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 247, 192, 15),
                       side: BorderSide.none,
@@ -126,7 +151,9 @@ class ProfileMenuWidget extends StatelessWidget {
         ),
         child: Icon(icon, color: Color.fromARGB(255, 31, 8, 235)),
       ),
-      title: Text(title, style: Theme.of(context).textTheme.bodyLarge?.apply()),
+      title: Text(title,
+          style:
+              Theme.of(context).textTheme.bodyLarge?.apply(color: textColor)),
       trailing: endIcon
           ? Container(
               width: 30,
