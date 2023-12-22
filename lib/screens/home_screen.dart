@@ -8,13 +8,14 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
-  var fitur = ['Terlaris', 'Terdekat', 'Termurah', 'Jajanan', 'Profile'];
+  var fitur = ['Terlaris', 'Terdekat', 'Termurah', 'Jajanan', 'Profile', 'Favorite'];
   var fiturIcons = [
     Icons.favorite_border_outlined,
     Icons.location_on_outlined,
     Icons.attach_money_outlined,
     Icons.fastfood_outlined,
     Icons.local_offer_outlined,
+    Icons.star_border_sharp,
   ];
   var fiturRoutes = [
     '/list',
@@ -22,6 +23,7 @@ class _HomescreenState extends State<Homescreen> {
     '/cheapest',
     '/',
     '/profile',
+    '/favorite'
   ];
   @override
   Widget build(BuildContext context) {
