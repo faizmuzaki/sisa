@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sisa/screens/signup_screen.dart';
 
 class Loginscreen extends StatefulWidget {
-  const Loginscreen({Key? key}) : super(key: key);
+  const Loginscreen({super.key});
 
   @override
   State<Loginscreen> createState() => _LoginscreenState();
@@ -15,16 +15,16 @@ class _LoginscreenState extends State<Loginscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFF6F8FB),
+        backgroundColor: const Color(0xFFF6F8FB),
         body: Padding(
           padding:
               EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
           child: ListView(
             children: [
-              Center(
+              const Center(
                 child: Column(
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: 16,
                         vertical: 16,
@@ -39,7 +39,7 @@ class _LoginscreenState extends State<Loginscreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8),
                     Text(
                       "Selamat Datang\nSilahkan masukkan akun anda\nyang sudah terdaftar di SiSa",
                       textAlign: TextAlign.center,
@@ -57,7 +57,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   margin: const EdgeInsets.symmetric(
                     horizontal: 16,
                   ),
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16.0),
@@ -68,7 +68,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
+                      const Row(
                         children: [
                           Text('Email'),
                           Text(
@@ -77,26 +77,26 @@ class _LoginscreenState extends State<Loginscreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
                       TextField(
                         controller: emailController,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(16),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.orange,
                             ),
                           ),
                           errorText: isEmailValid ? null : "Email tidak valid",
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Text('Kata Sandi'),
                           Text(
@@ -105,27 +105,27 @@ class _LoginscreenState extends State<Loginscreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       TextField(
                         obscureText: true,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(16),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.white,
                             ),
                           ),
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: double.infinity,
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: Container(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 right: 16,
                                 top: 8), // Adjust the padding as needed
                             child: TextButton(
@@ -135,7 +135,7 @@ class _LoginscreenState extends State<Loginscreen> {
                                         Colors.orange),
                               ),
                               onPressed: () {},
-                              child: Text(
+                              child: const Text(
                                 "Lupa Kata Sandi ?",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -148,7 +148,7 @@ class _LoginscreenState extends State<Loginscreen> {
                       ),
                       Container(
                         width: double.infinity,
-                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor:
@@ -167,7 +167,7 @@ class _LoginscreenState extends State<Loginscreen> {
                               isEmailValid = emailController.text.isNotEmpty;
                             });
                           },
-                          child: Text(
+                          child: const Text(
                             "Masuk",
                             style: TextStyle(
                               fontSize: 16,
@@ -177,21 +177,21 @@ class _LoginscreenState extends State<Loginscreen> {
                       ),
                       Container(
                         width: double.infinity,
-                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: TextButton(
                           style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all<Color>(
-                                Color(0XFFA4A8AE)),
+                                const Color(0XFFA4A8AE)),
                           ),
                           onPressed: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Signupscreen(),
+                                builder: (context) => const Signupscreen(),
                               ),
                             );
                           },
-                          child: Text(
+                          child: const Text(
                             "Belum Punya Akun? Daftar",
                             style: TextStyle(
                               fontSize: 16,

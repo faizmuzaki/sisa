@@ -4,14 +4,14 @@ import 'package:sisa/api/get_restaurants.dart';
 import 'package:sisa/models/restaurants_model.dart';
 
 class NearestScreen extends StatefulWidget {
-  const NearestScreen({Key? key}) : super(key: key);
+  const NearestScreen({super.key});
 
   @override
   State<NearestScreen> createState() => _NearestScreenState();
 }
 
 class _NearestScreenState extends State<NearestScreen> {
-  var _value = 1;
+  final _value = 1;
   var restaurantServices = GetRestaurant();
   Position? _currentPosition;
   bool _isLoading = true;
@@ -63,10 +63,10 @@ class _NearestScreenState extends State<NearestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Restaurants")),
+      appBar: AppBar(title: const Text("Restaurants")),
       body: SafeArea(
         child: _isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : FutureBuilder<List<Restaurant>>(
                 future: restaurantServices.getRestaurantsSortedBy(
                     sortBy: SortCriteria.nearest,
@@ -101,7 +101,7 @@ class _NearestScreenState extends State<NearestScreen> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Container(
+                                  child: SizedBox(
                                     height: 100,
                                     width: 100,
                                     child: Stack(
@@ -120,7 +120,7 @@ class _NearestScreenState extends State<NearestScreen> {
                                           right: 0,
                                           child: Container(
                                             height: 35,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               borderRadius: BorderRadius.only(
                                                 bottomLeft: Radius.circular(8),
                                                 bottomRight: Radius.circular(8),
@@ -130,7 +130,7 @@ class _NearestScreenState extends State<NearestScreen> {
                                             child: Center(
                                               child: Text(
                                                 '${restaurant.discount.toString()}% OFF',
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontSize: 12,
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
@@ -148,7 +148,7 @@ class _NearestScreenState extends State<NearestScreen> {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(8),
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                             ),
                                             child: Center(
@@ -156,16 +156,16 @@ class _NearestScreenState extends State<NearestScreen> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                                  Icon(
+                                                  const Icon(
                                                     Icons.star,
                                                     color: Color.fromARGB(
                                                         255, 255, 213, 0),
                                                     size: 14,
                                                   ),
-                                                  SizedBox(width: 4),
+                                                  const SizedBox(width: 4),
                                                   Text(
-                                                    '${restaurant.rate.toString()}',
-                                                    style: TextStyle(
+                                                    restaurant.rate.toString(),
+                                                    style: const TextStyle(
                                                       fontSize: 10,
                                                       color: Colors.black,
                                                       fontWeight:
@@ -184,7 +184,7 @@ class _NearestScreenState extends State<NearestScreen> {
                               ],
                             ),
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: 100,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -192,25 +192,25 @@ class _NearestScreenState extends State<NearestScreen> {
                                   children: [
                                     Text(
                                       restaurant.placeName,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
                                       restaurant.type,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 12,
                                       ),
                                     ),
                                     Text(
-                                      'Bandar Lampung / ${distanceText}',
-                                      style: TextStyle(
+                                      'Bandar Lampung / $distanceText',
+                                      style: const TextStyle(
                                           fontSize: 12, color: Colors.black),
                                     ),
                                     Text(
                                       'Rp ${restaurant.lowestPrice} - ${restaurant.highestPrice}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 18,
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold),
@@ -224,7 +224,7 @@ class _NearestScreenState extends State<NearestScreen> {
                       },
                     );
                   } else {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
