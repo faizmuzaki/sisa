@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
-  const Homescreen({super.key});
+  const Homescreen({Key? key}) : super(key: key);
 
   @override
   State<Homescreen> createState() => _HomescreenState();
 }
 
 class _HomescreenState extends State<Homescreen> {
-  var fitur = ['Terlaris', 'Terdekat', 'Termurah', 'Jajanan', 'Profile', 'Favorite'];
+  var fitur = [
+    'Terlaris',
+    'Terdekat',
+    'Termurah',
+    'Jajanan',
+  ];
   var fiturIcons = [
     Icons.favorite_border_outlined,
     Icons.location_on_outlined,
     Icons.attach_money_outlined,
     Icons.fastfood_outlined,
-    Icons.local_offer_outlined,
-    Icons.star_border_sharp,
   ];
   var fiturRoutes = [
     '/list',
     '/nearest',
     '/cheapest',
     '/',
-    '/profile',
-    '/favorite'
   ];
+
+  var imagesNews = [
+    'assets/images/promo1.jpg',
+    'assets/images/promo2.jpg',
+    'assets/images/promo3.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,11 +40,9 @@ class _HomescreenState extends State<Homescreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 10,
-              ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Row(
                   children: [
@@ -63,8 +69,10 @@ class _HomescreenState extends State<Homescreen> {
                         ),
                       ],
                     ),
-                    Expanded(child: SizedBox()),
-                    SizedBox(
+                    Expanded(
+                      child: SizedBox(),
+                    ),
+                    Container(
                       width: 40,
                       height: 40,
                       child: Icon(
@@ -75,7 +83,7 @@ class _HomescreenState extends State<Homescreen> {
                   ],
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 8,
               ),
               Padding(
@@ -86,7 +94,7 @@ class _HomescreenState extends State<Homescreen> {
                   decoration: BoxDecoration(
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(16.0),
-                    image: const DecorationImage(
+                    image: DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage('assets/images/promo.png'),
                     ),
@@ -95,10 +103,10 @@ class _HomescreenState extends State<Homescreen> {
               ),
               GridView.builder(
                 itemCount: fitur.length,
-                physics: const NeverScrollableScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
                   mainAxisSpacing: 16,
                 ),
                 itemBuilder: (context, index) {
@@ -107,7 +115,7 @@ class _HomescreenState extends State<Homescreen> {
                       Navigator.pushNamed(context, fiturRoutes[index]);
                     },
                     child: Container(
-                      margin: const EdgeInsets.only(top: 8),
+                      margin: EdgeInsets.only(top: 8),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -124,24 +132,67 @@ class _HomescreenState extends State<Homescreen> {
                               size: 32,
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 4,
                           ),
-                          Flexible(
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                children: [
-                                  Text(
-                                    fitur[index],
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
+                          Text(
+                            fitur[index],
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+              Padding(
+                padding: EdgeInsets.all(16.0), // Adjust the padding as needed
+                child: Text(
+                  'Promo...',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              ListView.builder(
+                itemCount: imagesNews.length,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          Image.asset(
+                            imagesNews[index],
+                            fit: BoxFit.fill,
+                            width: double.infinity,
+                            height: 100,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                             ),
                           ),
                         ],
@@ -150,7 +201,7 @@ class _HomescreenState extends State<Homescreen> {
                   );
                 },
               ),
-              const SizedBox(
+              SizedBox(
                 height: 10,
               ),
             ],
