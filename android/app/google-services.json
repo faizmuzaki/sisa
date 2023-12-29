@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "652350155929",
+    "project_id": "moblan-sisa",
+    "storage_bucket": "moblan-sisa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652350155929:android:ea5f28d8f610904f259c08",
+        "android_client_info": {
+          "package_name": "com.example.sisa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlqOnO37fk2UvNp80qY6lwwXiXVm0VA6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sisa/screens/login_screen.dart';
 
@@ -10,6 +11,7 @@ class Signupscreen extends StatefulWidget {
 
 class _SignupscreenState extends State<Signupscreen> {
   TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool isEmailValid = false;
 
   @override
@@ -111,6 +113,7 @@ class _SignupscreenState extends State<Signupscreen> {
               const SizedBox(height: 8),
               TextField(
                 obscureText: true,
+                controller: passwordController,
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                   border: OutlineInputBorder(
@@ -150,9 +153,12 @@ class _SignupscreenState extends State<Signupscreen> {
                         MaterialStateProperty.all<Color>(Colors.white),
                   ),
                   onPressed: () {
-                    setState(() {
-                      isEmailValid = emailController.text.isNotEmpty;
-                    });
+                    FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                            email: emailController.text,
+                            password: passwordController.text)
+                        .then(
+                            (value) => Navigator.pushNamed(context, '/Login'));
                   },
                   child: const Text(
                     "Daftar",
@@ -167,12 +173,14 @@ class _SignupscreenState extends State<Signupscreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    foregroundColor: Colors.black, // Set the text color to black
+                    foregroundColor:
+                        Colors.black, // Set the text color to black
                   ),
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Loginscreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const Loginscreen()),
                     );
                   },
                   child: const Text(

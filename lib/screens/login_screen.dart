@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sisa/screens/signup_screen.dart';
 
@@ -10,6 +11,7 @@ class Loginscreen extends StatefulWidget {
 
 class _LoginscreenState extends State<Loginscreen> {
   TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool isEmailValid = false;
 
   @override
@@ -83,7 +85,8 @@ class _LoginscreenState extends State<Loginscreen> {
                       TextField(
                         controller: emailController,
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 16),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(16),
                             borderSide: const BorderSide(
@@ -109,9 +112,11 @@ class _LoginscreenState extends State<Loginscreen> {
                         height: 8,
                       ),
                       TextField(
+                        controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 16),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(16),
                             borderSide: const BorderSide(
@@ -163,9 +168,13 @@ class _LoginscreenState extends State<Loginscreen> {
                             ),
                           ),
                           onPressed: () {
-                            setState(() {
-                              isEmailValid = emailController.text.isNotEmpty;
-                            });
+                            FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                                    email: emailController.text,
+                                    password: passwordController.text)
+                                .then((value) {
+                              Navigator.pushNamed(context, '/Homescreen');
+                            }).catchError((e) {});
                           },
                           child: const Text(
                             "Masuk",
